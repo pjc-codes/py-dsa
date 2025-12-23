@@ -15,14 +15,29 @@ def fib_brute(n):
     i = 4
     while i <= n:
         f_n = f1+f2
+        # print(f'{i = } {f_n =}') # for testing
         f1 = f2
         f2 = f_n
         i += 1
     return f_n
 
 
-# recursion
+# recursion with cache-ing
 
+def cache_memory(base_func):
+    cache_dict = dict()
+
+    def enhanced_func(*args):
+        if args in cache_dict:
+            print('Retrieving from cache')  # just to see cache in action
+            return cache_dict[args]
+        result = base_func(*args)
+        cache_dict[args] = result
+        return result
+    return enhanced_func
+
+
+@cache_memory
 def fib_recursion(n: int):
     if n == 1:
         return 0
@@ -31,5 +46,7 @@ def fib_recursion(n: int):
     return fib_recursion(n-1)+fib_recursion(n-2)
 
 
-number = 11
+number = 15
+print(fib_brute(number), fib_recursion(number))
+number = 10
 print(fib_brute(number), fib_recursion(number))
