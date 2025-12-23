@@ -15,7 +15,6 @@ def fib_brute(n):
     i = 4
     while i <= n:
         f_n = f1+f2
-        # print(f'{i=}, {f_n=}')
         f1 = f2
         f2 = f_n
         i += 1
