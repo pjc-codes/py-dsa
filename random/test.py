@@ -1,9 +1,17 @@
-count1 = 0
-n = 4
+from collections import defaultdict
 
-for i in range(n):
-    for j in range(n):
-        count1 += 1
-        print(f"i: {i}, j: {j}, count: {count1}")
-        if j == i:
-            break
+def longest_substring_without_repeats(s):
+    longest=0
+    left=0
+    counter = defaultdict(int)
+
+    for right in range(len(s)):
+        counter[s[right]] += 1
+        while counter[s[right]]>1:
+            counter[s[left]] -= 1
+            left += 1
+        longest = max(longest,right-left+1)
+    return longest
+
+s='abcbdbe'
+print(longest_substring_without_repeats(s))
