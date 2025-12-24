@@ -12,4 +12,5 @@ dependencies = [
 members = [
     "random",
     "arrays",
+    "hashmaps",
 ]
